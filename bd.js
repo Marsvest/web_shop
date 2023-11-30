@@ -3,17 +3,29 @@ function RegBtn(login, password) {
         url: 'test.php',
         type: 'POST',
         data: {login: login, pass: password},
-        success: function (response) {
-            // Handle the response from the PHP script
-            console.log(response);
-        },
-        error: function (xhr, status, error) {
-            // Handle any errors that occur during the request
-            console.log(error);
-        }
     });
 }
 
 $(document).ready(function () {
-    $('#regbtn').click(RegBtn(1, 2));
+    $('#regbtn').click(function () {
+        let login = $('#login_field');
+        let password = $('#password_field');
+        let login_txt = login.val();
+        let password_txt = password.val();
+
+        switch (true) {
+            case login_txt.includes(' ') || login_txt === '':
+                login.css('background-color', 'red');
+                break;
+            case password_txt.includes(' ') || password_txt === '':
+                password.css('background-color', 'red');
+                break;
+            default:
+                login.css('background-color', '');
+                password.css('background-color', '');
+
+                RegBtn(login_txt, password_txt);
+                break;
+        }
+    });
 });
