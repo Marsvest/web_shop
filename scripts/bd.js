@@ -1,15 +1,23 @@
 function RegBtn(login, password) {
     $.ajax({
-        url: 'test.php',
+        url: '../php/reg.php',
+        type: 'POST',
+        data: {login: login, pass: password},
+    });
+}
+
+function AuthBtn(login, password) {
+    $.ajax({
+        url: '../php/auth.php',
         type: 'POST',
         data: {login: login, pass: password},
     });
 }
 
 $(document).ready(function () {
-    $('#regbtn').click(function () {
-        let login = $('#login_field');
-        let password = $('#password_field');
+    $('#reg_btn').click(function () {
+        let login = $('#login_field_reg');
+        let password = $('#password_field_reg');
         let login_txt = login.val();
         let password_txt = password.val();
 
@@ -27,5 +35,14 @@ $(document).ready(function () {
                 RegBtn(login_txt, password_txt);
                 break;
         }
+    });
+});
+
+$(document).ready(function () {
+    $('#auth_btn').click(function () {
+        let login_txt = $('#login_field_auth').val();
+        let password_txt = $('#password_field_auth').val();
+
+        AuthBtn(login_txt, password_txt);
     });
 });
