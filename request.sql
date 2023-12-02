@@ -12,5 +12,10 @@ values ('test', 'test', true);
 Create Table Items
 (
     item_id    integer primary key autoincrement,
-    item_label text unique not null
+    item_label text unique not null,
+    item_desc text not null,
+    item_price integer not null,
+    item_image text not null
 );
+
+SELECT * from Items
