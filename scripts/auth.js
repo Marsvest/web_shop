@@ -2,7 +2,18 @@ function RegBtn(login, password) {
     $.ajax({
         url: '../php/reg.php',
         type: 'POST',
-        data: {login: login, pass: password}
+        data: {login: login, password: password},
+        success: function (response) {
+            let result = JSON.parse(response);
+            if (result.status === 'success') {
+                window.location.href = "../pages/shop.html";
+            } else {
+                alert('Пользователь с таким никнеймом уже сущесутвует.');
+            }
+        },
+        error: function () {
+            alert('An error occurred during the authentication process.');
+        }
     });
 }
 
@@ -13,7 +24,11 @@ function AuthBtn(login, password) {
         data: {login: login, password: password}, // Update the password key
         success: function (response) {
             let result = JSON.parse(response);
-            console.log(result.status);
+            if (result.status === 'success') {
+                window.location.href = "../pages/shop.html";
+            } else {
+                alert('Неправильный Логин/Пароль.')
+            }
         },
         error: function () {
             alert('An error occurred during the authentication process.');
