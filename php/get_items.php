@@ -12,7 +12,7 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
     $price = $row['item_price'];
 
     $answer = '<div class="product">
-        <img src="../images/' . $img . '" alt="item_img">
+        <img src="' . $img . '" alt="item_img">
         <h2>' . $label . '</h2>
         <p>' . $desc . '</p>
         <p>' . $price . ' руб.</p>
